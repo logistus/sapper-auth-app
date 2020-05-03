@@ -5,7 +5,7 @@ const pkg = require('./package.json');
 const DotEnv = require('dotenv-webpack');
 
 const mode = process.env.NODE_ENV;
-const dev = mode === 'development';
+const dev = mode === 'production';
 
 const alias = { svelte: path.resolve('node_modules', 'svelte') };
 const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
