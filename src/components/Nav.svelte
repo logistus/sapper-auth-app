@@ -7,10 +7,11 @@
 	let isOpen = false;
 	let jwt = require('jsonwebtoken');
 	const { session } = stores();
+	const {JWT_SECRET } = process.env;
 
 	afterUpdate(() => {
 		if ($session.token) {
-			jwt.verify($session.token, process.env.JWT_SECRET, (err, decoded) => {
+			jwt.verify($session.token, JWT_SECRET, (err, decoded) => {
 				if (err) console.log(err)
 				if (decoded) username = decoded.username;
 			});
