@@ -45,11 +45,11 @@ export function preload(page, session) {
             .then(r => {
                 r.json()
                     .then(function(result) {
-                        if (result.token) {
+                        if (result.username) {
                             loading = false;
                             loginDone = true;
                             loginError = "";
-                            $session.token = result.token;
+                            $session.username = result.username;
                             goto('/');
                         } else {
                             loading = false;

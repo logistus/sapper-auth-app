@@ -1,22 +1,10 @@
 <script>
 	import { stores } from '@sapper/app';
-	import { afterUpdate } from 'svelte';
 
 	export let segment;
 	let username = "";
 	let isOpen = false;
-	let jwt = require('jsonwebtoken');
 	const { session } = stores();
-	const {JWT_SECRET } = process.env;
-
-	afterUpdate(() => {
-		if ($session.token) {
-			jwt.verify($session.token, JWT_SECRET, (err, decoded) => {
-				if (err) console.log(err)
-				if (decoded) username = decoded.username;
-			});
-		}
-	});
 	
 	function menuToggle() {
 		isOpen = !isOpen;
@@ -24,7 +12,7 @@
 
 	async function logout() {
 		fetch('/auth/logout', {method: "POST"});
-		$session.token = null;
+		$session.username = null;
 	}
 </script>
 
@@ -51,14 +39,14 @@
 				<a href="." class:current='{segment === undefined}'
 						class="block px-2 py-1 text-white font-semibold rounded hover:bg-gray-800">home</a>
 			</div>
-			{#if !$session.token}
+			{#if !$session.username}
 			<div>
 				<a href="login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded sm:mt-0 mt-2 ml-2">Login</a>
 				<a href="register" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded sm:mt-0 mt-2 ml-2">Register</a>
 			</div>
 			{:else}
 			<div>
-				<span class="text-white font-bold">{username}</span>
+				<span class="text-white font-bold">{$session.username}</span>
 				<button type="button" on:click={logout} class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded sm:mt-0 mt-2 ml-2">Logout</button>
 			</div>
 			{/if}

@@ -27,7 +27,7 @@ express()
 		sirv('static', { dev }),
 		sapper.middleware({
 			session: req => ({
-				token: req.session.token
+				username: req.session.username
 			})
 		})
 	)
