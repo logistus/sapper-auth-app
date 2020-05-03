@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+
+.current {
+    @apply bg-gray-800;
+}
+.text-link {
+    @apply text-blue-500 underline;
+}
+.text-link:hover {
+    @apply text-blue-800;
+}
+input[type="text"], input[type="password"], input[type="email"] {
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+    @apply outline-none shadow-outline;
+}
+label {
+    @apply block text-gray-700 text-sm font-bold mb-2;
+}
+.input-has-error {
+    @apply border-red-700;
+}
+.text-error {
+    @apply text-red-500 text-xs italic;
+}
+
+@tailwind utilities;
