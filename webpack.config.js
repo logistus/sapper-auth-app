@@ -12,9 +12,6 @@ const extensions = ['.mjs', '.js', '.json', '.svelte', '.html'];
 const mainFields = ['svelte', 'module', 'browser', 'main'];
 
 module.exports = {
-	env: {
-		JWT_SECRET: process.env.JWT_SECRET
-	},
 	client: {
 		entry: config.client.entry(),
 		output: config.client.output(),
@@ -44,7 +41,6 @@ module.exports = {
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
-			new DotEnv(),
 		].filter(Boolean),
 		devtool: dev && 'inline-source-map'
 	},
