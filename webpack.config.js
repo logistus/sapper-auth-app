@@ -43,6 +43,9 @@ module.exports = {
 			}),
 			new DotEnv(),
 		].filter(Boolean),
+		env: {
+			JWT_SECRET: process.env.JWT_SECRET
+		},
 		devtool: dev && 'inline-source-map'
 	},
 
